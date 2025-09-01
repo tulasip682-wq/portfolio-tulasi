@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Education Consultant Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #333;
+    }
+    header {
+      background: #4a6fa5;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 15px;
+    }
+    .container {
+      display: flex;
+      max-width: 1100px;
+      margin: 20px auto;
+      gap: 20px;
+      padding: 0 15px;
+    }
+    .sidebar {
+      flex: 1;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .main {
+      flex: 3;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 0;
+      color: #4a6fa5;
+    }
+    .info p {
+      margin: 8px 0;
+    }
+    .portfolio-section {
+      margin-bottom: 20px;
+    }
+    .education-item, .project-item {
+      border-left: 3px solid #4a6fa5;
+      padding: 10px;
+      margin: 10px 0;
+      background: #f9fafc;
+      border-radius: 5px;
+    }
+    .course-list li {
+      margin: 6px 0;
+    }
+    form {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    input, textarea, button {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+    }
+    button {
+      background: #4a6fa5;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3b5885;
+    }
+    .dynamic-list {
+      margin-top: 10px;
+    }
+    .dynamic-item {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 5px 0;
+      background: #f9fafc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dynamic-item button {
+      background: #e74c3c;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Education Consultant Portfolio</h1>
+    <p>Guiding Students Towards Academic and Career Success</p>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Profile</h2>
+      <div class="info">
+        <p><strong>Name:</strong> Tulasi Priya G</p>
+        <p><strong>Role:</strong> Education Consultant</p>
+        <p><strong>Email:</strong> tulasi@gmail.com</p>
+        <p><strong>Phone:</strong> 1234567890</p>
+        <p><strong>College:</strong> KPR University</p>
+      </div>
+      <h2>Skills</h2>
+      <ul class="course-list">
+        <li>Career Counseling</li>
+        <li>Educational Planning</li>
+        <li>Data Analysis</li>
+        <li>Workshops & Seminars</li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <section class="portfolio-section">
+        <h2>Education Background</h2>
+        <div class="education-item">
+          <strong>B.Sc. Computer Science (Data Analytics)</strong><br>
+          KPR University, 2022–2025
+        </div>
+        <div class="education-item">
+          <strong>Higher Secondary</strong><br>
+          ABC School, 2020–2022
+        </div>
+      </section>
+
+      <section class="portfolio-section">
+        <h2>Consulting Experience</h2>
+        <div id="experienceList"></div>
+        <form id="experienceForm">
+          <input type="text" id="experienceTitle" placeholder="Consulting Title (e.g. Career Workshop)" required>
+          <textarea id="experienceDetails" placeholder="Details about the work" required></textarea>
+          <button type="submit">Add Experience</button>
+        </form>
+      </section>
+
+      <section class="portfolio-section">
+        <h2>Projects & Initiatives</h2>
+        <div id="projectList"></div>
+        <form id="projectForm">
+          <input type="text" id="projectTitle" placeholder="Project Title" required>
+          <textarea id="projectDetails" placeholder="Project Details" required></textarea>
+          <button type="submit">Add Project</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const expForm = document.getElementById('experienceForm');
+    const expList = document.getElementById('experienceList');
+    const projForm = document.getElementById('projectForm');
+    const projList = document.getElementById('projectList');
+
+    function createItem(title, details, list) {
+      const div = document.createElement('div');
+      div.className = 'dynamic-item';
+      div.innerHTML = `<div><strong>${title}</strong><br>${details}</div>`;
+      const btn = document.createElement('button');
+      btn.textContent = 'Remove';
+      btn.onclick = () => list.removeChild(div);
+      div.appendChild(btn);
+      list.appendChild(div);
+    }
+
+    expForm.addEventListener('submit', e => {
+      e.preventDefault();
+      createItem(expForm.experienceTitle.value, expForm.experienceDetails.value, expList);
+      expForm.reset();
+    });
+
+    projForm.addEventListener('submit', e => {
+      e.preventDefault();
+      createItem(projForm.projectTitle.value, projForm.projectDetails.value, projList);
+      projForm.reset();
+    });
+  </script>
+</body>
+</html>
